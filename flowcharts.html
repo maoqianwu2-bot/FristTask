@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毕业论文流程图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SimSun", "宋体", "Songti SC", serif;
+    background: #e8e8e8;
+    color: #000;
+  }
+  .toolbar {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff; border-bottom: 1px solid #ccc;
+    padding: 10px 24px; display: flex; align-items: center;
+    justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  }
+  .toolbar h1 { font-size: 16px; font-weight: bold; }
+  .toolbar .hint { font-size: 12px; color: #888; }
+  .catalog {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    padding: 10px 24px; background: #fff; border-bottom: 1px solid #ccc;
+  }
+  .catalog a { font-size: 12px; color: #2563eb; text-decoration: none; padding: 3px 10px; border-radius: 3px; }
+  .catalog a:hover { background: #eef2ff; }
+
+  .page {
+    max-width: 860px; margin: 28px auto;
+    background: #fff; border: 1px solid #ddd;
+    padding: 36px 28px 32px;
+  }
+  .page__title { text-align: center; font-size: 15px; font-weight: bold; margin-bottom: 4px; }
+  .page__subtitle { text-align: center; font-size: 11px; color: #666; margin-bottom: 20px; }
+  .page svg { display: block; margin: 0 auto; }
+
+  @media print {
+    body { background: #fff; }
+    .toolbar, .catalog { display: none; }
+    .page { border: none; margin: 0; padding: 20px 16px; max-width: 100%; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>毕业论文流程图 — 基于STM32的智能水表系统</h1>
+  <span class="hint">可直接打印 · 黑白线框 · 宋体 · 标准规范</span>
+</div>
+<div class="catalog">
+  <a href="#fig1">图1 系统总体架构</a>
+  <a href="#fig2">图2 主程序流程</a>
+  <a href="#fig3">图3 刷卡认证流程</a>
+  <a href="#fig4">图4 用水控制流程</a>
+  <a href="#fig5">图5 NB-IoT通信流程</a>
+  <a href="#fig6">图6 缴费充值流程</a>
+  <a href="#fig7">图7 硬件系统框图</a>
+</div>
+
+<!-- ================================================================== -->
+<!-- 图1：系统总体架构图 -->
+<!-- ================================================================== -->
+<div class="page" id="fig1">
+<div class="page__title">图1 &nbsp; 系统总体架构图</div>
+<div class="page__subtitle">Fig.1 System Overall Architecture</div>
+<svg id="s1" width="800" height="620" viewBox="0 0 800 620"></svg>
+</div>
+
+<!-- ================================================================== -->
+<!-- 图2：主程序流程图 -->
+<!-- ================================================================== -->
+<div class="page" id="fig2">
+<div class="page__title">图2 &nbsp; 系统主程序流程图</div>
+<div class="page__subtitle">Fig.2 Main Program Flowchart</div>
+<svg id="s2" width="800" height="980" viewBox="0 0 800 980"></svg>
+</div>
+
+<!-- ================================================================== -->
+<!-- 图3：刷卡认证流程图 -->
+<!-- ================================================================== -->
+<div class="page" id="fig3">
+<div class="page__title">图3 &nbsp; 刷卡认证流程图</div>
+<div class="page__subtitle">Fig.3 RFID Card Authentication Flowchart</div>
+<svg id="s3" width="800" height="1050" viewBox="0 0 800 1050"></svg>
+</div>
+
+<!-- ================================================================== -->
+<!-- 图4：用水控制流程图 -->
+<!-- ================================================================== -->
+<div class="page" id="fig4">
+<div class="page__title">图4 &nbsp; 用水控制流程图</div>
+<div class="page__subtitle">Fig.4 Water Usage Control Flowchart</div>
+<svg id="s4" width="800" height="1050" viewBox="0 0 800 1050"></svg>
+</div>
+
+<!-- ================================================================== -->
+<!-- 图5：NB-IoT通信流程图 -->
+<!-- ================================================================== -->
+<div class="page" id="fig5">
+<div class="page__title">图5 &nbsp; NB-IoT 通信流程图</div>
+<div class="page__subtitle">Fig.5 NB-IoT Communication Flowchart</div>
+<svg id="s5" width="800" height="1150" viewBox="0 0 800 1150"></svg>
+</div>
+
+<!-- ================================================================== -->
+<!-- 图6：缴费充值流程图 -->
+<!-- ================================================================== -->
+<div class="page" id="fig6">
+<div class="page__title">图6 &nbsp; 用户缴费充值流程图</div>
+<div class="page__subtitle">Fig.6 Payment &amp; Recharge Flowchart</div>
+<svg id="s6" width="800" height="1000" viewBox="0 0 800 1000"></svg>
+</div>
+
+<!-- ================================================================== -->
+<!-- 图7：硬件系统框图 -->
+<!-- ================================================================== -->
+<div class="page" id="fig7">
+<div class="page__title">图7 &nbsp; 硬件系统框图</div>
+<div class="page__subtitle">Fig.7 Hardware System Block Diagram</div>
+<svg id="s7" width="800" height="580" viewBox="0 0 800 580"></svg>
+</div>
+
+<script>
+(function() {
+'use strict';
+
+// ============ SVG 绘图工具函数 ============
+const NS = 'http://www.w3.org/2000/svg';
+
+function S(tag, attrs) {
+  const el = document.createElementNS(NS, tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+function add(parent, el) { parent.appendChild(el); return el; }
+
+// 箭头标记（每个SVG需要自己的defs）
+function addArrowMarker(svg) {
+  const defs = S('defs', {});
+  const m = S('marker', { id: 'arrow' + (svg.id || ''), markerWidth: '8', markerHeight: '6',
+    refX: '8', refY: '3', orient: 'auto', markerUnits: 'userSpaceOnUse' });
+  add(m, S('path', { d: 'M0,0 L8,3 L0,6 Z', fill: '#000' }));
+  add(defs, m);
+  add(svg, defs);
+  return 'url(#' + 'arrow' + (svg.id || '') + ')';
+}
+
+// 圆角矩形（开始/结束）
+function drawStart(svg, cx, cy, w, h, text, lines) {
+  const x = cx - w / 2, y = cy - h / 2;
+  add(svg, S('rect', { x, y, width: w, height: h, rx: 10, ry: 10,
+    fill: '#fff', stroke: '#000', 'stroke-width': 1.5 }));
+  drawText(svg, cx, cy, text, lines);
+}
+
+// 矩形（处理步骤）
+function drawProcess(svg, cx, cy, w, h, text, lines) {
+  const x = cx - w / 2, y = cy - h / 2;
+  add(svg, S('rect', { x, y, width: w, height: h,
+    fill: '#fff', stroke: '#000', 'stroke-width': 1.5 }));
+  drawText(svg, cx, cy, text, lines);
+}
+
+// 菱形（判断）
+function drawDiamond(svg, cx, cy, w, h, text, lines) {
+  const hw = w / 2, hh = h / 2;
+  const pts = (cx - hw) + ',' + cy + ' ' + cx + ',' + (cy - hh) + ' ' +
+              (cx + hw) + ',' + cy + ' ' + cx + ',' + (cy + hh);
+  add(svg, S('polygon', { points: pts, fill: '#fff', stroke: '#000', 'stroke-width': 1.5 }));
+  drawText(svg, cx, cy, text, lines);
+}
+
+// 平行四边形（输入/输出 - 可选）
+function drawParallelogram(svg, cx, cy, w, h, text, lines) {
+  const hw = w / 2, hh = h / 2, sk = 12;
+  const pts = (cx - hw + sk) + ',' + (cy - hh) + ' ' + (cx + hw + sk) + ',' + (cy - hh) + ' ' +
+              (cx + hw - sk) + ',' + (cy + hh) + ' ' + (cx - hw - sk) + ',' + (cy + hh);
+  add(svg, S('polygon', { points: pts, fill: '#fff', stroke: '#000', 'stroke-width': 1.5 }));
+  drawText(svg, cx, cy, text, lines);
+}
+
+// 绘制文字（支持多行）
+function drawText(svg, cx, cy, text, lines) {
+  if (!lines || lines === 1) {
+    add(svg, S('text', { x: cx, y: cy + 5, 'text-anchor': 'middle',
+      'font-family': 'SimSun,宋体,Songti SC,serif', 'font-size': '14', fill: '#000' }))
+      .textContent = text;
+  } else {
+    const fs = 13, lh = 18;
+    const totalH = lines * lh;
+    const startY = cy - totalH / 2 + fs + 2;
+    const parts = text.split('\n');
+    for (let i = 0; i < parts.length && i < lines; i++) {
+      add(svg, S('text', { x: cx, y: startY + i * lh, 'text-anchor': 'middle',
+        'font-family': 'SimSun,宋体,Songti SC,serif', 'font-size': fs, fill: '#000' }))
+        .textContent = parts[i];
+    }
+  }
+}
+
+// 小标签文字（在连线上）
+function drawLabel(svg, x, y, text) {
+  add(svg, S('text', { x, y, 'text-anchor': 'middle',
+    'font-family': 'SimSun,宋体,Songti SC,serif', 'font-size': '12', fill: '#000' }))
+    .textContent = text;
+}
+
+// 正交连线
+// 从 (x1,y1) 到 (x2,y2)，自动做正交转折
+// dir: 'v' - 先竖后横 (默认), 'h' - 先横后竖
+function drawPath(svg, x1, y1, x2, y2, arrow, dir) {
+  dir = dir || 'v';
+  let d;
+  if (dir === 'v') {
+    const my = (y1 + y2) / 2;
+    d = 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + my + ' L' + x2 + ',' + my + ' L' + x2 + ',' + y2;
+  } else {
+    const mx = (x1 + x2) / 2;
+    d = 'M' + x1 + ',' + y1 + ' L' + mx + ',' + y1 + ' L' + mx + ',' + y2 + ' L' + x2 + ',' + y2;
+  }
+  const attrs = { d, fill: 'none', stroke: '#000', 'stroke-width': 1.2 };
+  if (arrow) attrs['marker-end'] = arrow;
+  add(svg, S('path', attrs));
+}
+
+// 简单竖线
+function drawVLine(svg, x1, y1, y2, arrow) {
+  const attrs = { d: 'M' + x1 + ',' + y1 + ' L' + x1 + ',' + y2, fill: 'none', stroke: '#000', 'stroke-width': 1.2 };
+  if (arrow) attrs['marker-end'] = arrow;
+  add(svg, S('path', attrs));
+}
+
+// 简单横线
+function drawHLine(svg, x1, x2, y, arrow) {
+  const attrs = { d: 'M' + x1 + ',' + y + ' L' + x2 + ',' + y, fill: 'none', stroke: '#000', 'stroke-width': 1.2 };
+  if (arrow) attrs['marker-end'] = arrow;
+  add(svg, S('path', attrs));
+}
+
+// 绘制虚线框（分组用）
+function drawDashBox(svg, x, y, w, h, label) {
+  add(svg, S('rect', { x, y, width: w, height: h, fill: 'none', stroke: '#000', 'stroke-width': 1, 'stroke-dasharray': '6,4' }));
+  if (label) {
+    add(svg, S('text', { x: x + 8, y: y + 16, 'font-family': 'SimSun,宋体', 'font-size': '12', fill: '#000' }))
+      .textContent = label;
+  }
+}
+
+// ============ 图1：系统总体架构图 ============
+(function() {
+  const svg = document.getElementById('s1');
+  const arrow = addArrowMarker(svg);
+
+  // 感知层
+  drawDashBox(svg, 30, 30, 220, 280, '感知层');
+  const things = [
+    { t: 'RC522 RFID刷卡模块\n（用户卡/管理员卡）', y: 70 },
+    { t: 'YF-S201C 水流计传感器\n（采集用水脉冲）', y: 140 },
+    { t: '限位开关\n（检测表箱开合状态）', y: 210 },
+    { t: '按键输入\n（本地交互）', y: 270 },
+  ];
+  things.forEach(o => drawProcess(svg, 140, o.y, 180, 44, o.t, 2));
+
+  // 控制层
+  drawDashBox(svg, 280, 30, 240, 280, '控制层');
+  drawProcess(svg, 400, 100, 200, 50, 'STM32 单片机核心板\n（数据处理·逻辑控制·数据存储）', 2);
+  drawProcess(svg, 400, 200, 200, 44, '内部Flash（掉电保存）', 1);
+
+  // 执行层
+  drawDashBox(svg, 550, 30, 220, 330, '执行层');
+  const acts = [
+    { t: '5V继电器 + 5V电磁锁\n（阀门开关控制）', y: 70 },
+    { t: 'SG90 舵机\n（表箱门锁控制）', y: 140 },
+    { t: 'ST7735 TFT显示屏\n（显示水量信息）', y: 210 },
+    { t: 'LED灯 + 蜂鸣器\n（声光报警）', y: 280 },
+  ];
+  acts.forEach(o => drawProcess(svg, 660, o.y, 180, 44, o.t, 2));
+
+  // 传输层
+  drawDashBox(svg, 80, 360, 650, 220, '传输层');
+  drawProcess(svg, 220, 410, 200, 44, 'SIM7020C NB-IoT 模块\n（AT指令通信）', 2);
+  drawProcess(svg, 420, 410, 160, 44, 'OF-Link 云服务器', 1);
+  drawProcess(svg, 620, 410, 160, 44, '手机 APP\n（远程查询·充值·报警）', 2);
+
+  // 连线
+  drawHLine(svg, 220, 280, 100, arrow);
+  drawHLine(svg, 280, 550, 100, arrow);
+  drawHLine(svg, 500, 550, 210, arrow);
+  drawHLine(svg, 310, 400, 410, arrow);
+  drawHLine(svg, 510, 580, 410, arrow);
+  drawHLine(svg, 580, 690, 410, arrow);
+})();
+
+// ============ 图2：主程序流程图 ============
+(function() {
+  const svg = document.getElementById('s2');
+  const arrow = addArrowMarker(svg);
+  const cx = 400, lx = 220, rx = 580;
+  const W = 180, H = 42, DW = 150, DH = 84;
+
+  // 节点
+  drawStart(svg, cx, 34, 150, 40, '开始');
+  drawProcess(svg, cx, 106, W, H, '系统初始化');
+  drawProcess(svg, cx, 178, W, H, 'TFT显示初始化\n加载已用水量/剩余水量', 2);
+  drawProcess(svg, cx, 256, W, H, 'RC522 RFID 初始化');
+  drawProcess(svg, cx, 334, W, H, 'NB-IoT模块初始化\n注网·连接云平台', 2);
+  drawDiamond(svg, cx, 430, DW, DH, '主循环\n轮询？');
+  drawProcess(svg, cx, 520, W, H, '读取刷卡状态');
+  drawDiamond(svg, cx, 600, 130, 68, '检测到\n刷卡？');
+  drawProcess(svg, rx, 660, W, H, '刷卡处理流程\n（见图3）', 2);
+  drawProcess(svg, cx, 738, W, H, '读取水流计脉冲');
+  drawDiamond(svg, cx, 812, 130, 68, '有水流\n脉冲？');
+  drawProcess(svg, rx, 868, W, H, '用水处理流程\n（见图4）', 2);
+  drawProcess(svg, cx, 940, W, H, '检测限位开关状态');
+
+  // 竖线连接（主流程）
+  drawVLine(svg, cx, 54, 85, arrow);
+  drawVLine(svg, cx, 127, 157, arrow);
+  drawVLine(svg, cx, 199, 235, arrow);
+  drawVLine(svg, cx, 277, 313, arrow);
+  drawVLine(svg, cx, 355, 388, arrow);
+  drawVLine(svg, cx, 472, 499, arrow);
+  drawVLine(svg, cx, 541, 570, arrow);
+
+  // 刷卡分支 - 否 → 向下
+  drawVLine(svg, cx, 634, 717, arrow);
+  drawLabel(svg, cx - 18, 678, '否');
+  // 刷卡分支 - 是 → 向右到rx
+  drawHLine(svg, cx + DH/2 + 10, rx - W/2, 660, arrow);
+  drawLabel(svg, cx + 55, 650, '是');
+  drawVLine(svg, rx, 681, 717, arrow);
+  drawHLine(svg, rx, cx, 717, arrow);
+
+  // 水流分支 - 否 → 向下
+  drawVLine(svg, cx, 846, 919, arrow);
+  drawLabel(svg, cx - 18, 885, '否');
+  // 水流分支 - 是 → 向右
+  drawHLine(svg, cx + DH/2 + 10, rx - W/2, 868, arrow);
+  drawLabel(svg, cx + 55, 858, '是');
+  drawVLine(svg, rx, 889, 919, arrow);
+  drawHLine(svg, rx, cx, 919, arrow);
+
+  drawVLine(svg, cx, 961, 970, arrow);
+  drawStart(svg, cx, 980, 130, 40, '返回主循环');
+})();
+
+// ============ 图3：刷卡认证流程图 ============
+(function() {
+  const svg = document.getElementById('s3');
+  const arrow = addArrowMarker(svg);
+  const cx = 400, lx = 220, rx = 580;
+  const W = 180, H = 42, DW = 150, DH = 84;
+
+  drawStart(svg, cx, 26, 150, 40, '检测到刷卡');
+  drawProcess(svg, cx, 100, W, H, 'RC522 读取卡号\n及卡片类型数据', 2);
+  drawDiamond(svg, cx, 184, DW, DH, '卡号在\n白名单中？');
+  drawProcess(svg, rx, 184, W, H, 'TFT显示：无效卡\n声光提示', 2);
+  drawStart(svg, rx, 270, 120, 36, '返回主循环');
+
+  drawDiamond(svg, cx, 340, DW, DH, '卡片类型？');
+  drawLabel(svg, cx - 100, 310, '管理员卡');
+  drawLabel(svg, cx + 100, 310, '用户卡');
+
+  // 管理员分支
+  drawProcess(svg, lx, 430, W, H, 'TFT显示：管理员模式');
+  drawDiamond(svg, lx, 516, DW, DH, '管理员\n操作选择？');
+  drawProcess(svg, lx, 600, W, H, '舵机动作\n打开/关闭表箱', 2);
+  drawVLine(svg, lx, 621, 640, arrow);
+  drawProcess(svg, lx, 660, W, H, '返回等待操作', 1);
+  drawVLine(svg, lx, 681, 700, arrow);
+  drawHLine(svg, lx, cx, 700, arrow);
+  // 清零分支
+  drawProcess(svg, lx + 220, 600, W, H, '确认清零\n清除水量数据·写入Flash', 2);
+  drawVLine(svg, lx + 220, 621, 660, arrow);
+  drawHLine(svg, lx + 220, cx, 700, arrow);
+
+  // 用户分支
+  drawProcess(svg, rx, 430, W, H, 'TFT显示：用户模式\n舵机打开表箱', 2);
+  drawDiamond(svg, rx, 516, 140, 74, '等待\n操作？');
+  drawProcess(svg, rx, 600, W, H, '刷卡关闭表箱\nTFT恢复常态显示', 2);
+  drawVLine(svg, rx, 621, 640, arrow);
+  drawProcess(svg, rx + 120, 660, W, H, '超时30s自动关闭\nTFT显示提示', 2);
+  drawHLine(svg, rx + 120, cx, 700, arrow);
+
+  drawStart(svg, cx, 726, 130, 40, '返回主循环');
+
+  // 连线 - 管理员卡路径
+  drawVLine(svg, cx, 79, 121, arrow);
+  drawVLine(svg, cx, 226, 298, arrow);
+  drawLabel(svg, cx - 20, 248, '是');
+  drawHLine(svg, cx - DW/2 - 10, lx - W/2, 340, arrow);
+  drawHLine(svg, cx + DW/2 + 10, rx - W/2, 340, arrow);
+  drawVLine(svg, lx, 319, 388, arrow);
+  drawVLine(svg, lx, 451, 474, arrow);
+  drawLabel(svg, lx - 18, 550, '开/关');
+  drawLabel(svg, lx + 130, 550, '清零');
+  drawHLine(svg, lx - DW/2, lx - W/2, 558, arrow);
+  drawHLine(svg, lx + DW/2, lx + 220 - W/2, 558, arrow);
+  drawVLine(svg, lx + 220, 579, 621, arrow);
+
+  // 用户卡路径
+  drawVLine(svg, rx, 319, 388, arrow);
+  drawVLine(svg, rx, 451, 474, arrow);
+  drawLabel(svg, rx - 18, 550, '刷卡');
+  drawLabel(svg, rx + 90, 550, '超时');
+  drawHLine(svg, rx - DW/2, rx - W/2, 558, arrow);
+  drawHLine(svg, rx + DW/2, rx + 120 - W/2, 558, arrow);
+  drawVLine(svg, rx + 120, 579, 639, arrow);
+
+  // 无效分支
+  drawHLine(svg, cx + DW/2 + 12, rx - W/2, 184, arrow);
+  drawLabel(svg, cx + 60, 174, '否');
+  drawVLine(svg, rx, 205, 252, arrow);
+
+  // 返回循环
+  drawVLine(svg, lx + 220, 639, 660, arrow);
+  drawHLine(svg, cx, lx + 220, 700, arrow);
+  drawVLine(svg, cx, 700, 726, arrow);
+})();
+
+// ============ 图4：用水控制流程图 ============
+(function() {
+  const svg = document.getElementById('s4');
+  const arrow = addArrowMarker(svg);
+  const cx = 400, lx = 210, rx = 590;
+  const W = 180, H = 42, DW = 150, DH = 84;
+
+  drawStart(svg, cx, 28, 150, 40, '水流计脉冲中断触发');
+  drawProcess(svg, cx, 104, W, H, '累计脉冲数\n（N个脉冲 = 1升水）', 2);
+  drawProcess(svg, cx, 180, W, H, '更新变量\n已用水量+1 剩余水量−1', 2);
+  drawDiamond(svg, cx, 262, DW, DH, '累计变化\n≥ 1升？');
+  drawProcess(svg, cx, 348, W, H, '写入内部Flash\n掉电保存水量数据', 2);
+  drawProcess(svg, cx, 426, W, H, 'TFT实时更新显示\n已用水量 / 剩余水量', 2);
+  drawDiamond(svg, cx, 514, DW, DH, '剩余水量\n≤ 0？');
+  drawDiamond(svg, rx, 610, 140, 74, '剩余水量\n≤ 阈值\n（1吨）？');
+
+  // 停水
+  drawProcess(svg, lx, 610, W, H, '继电器断开\n电磁锁关闭阀门\n停止供水', 3);
+  drawProcess(svg, lx, 698, W, H, '持续声光报警\nTFT：已停水请充值\nAPP推送停水通知', 3);
+  drawStart(svg, lx, 790, 150, 40, '返回，等待充值');
+
+  // 不足报警 - 是
+  drawProcess(svg, rx + 160, 698, W, H, '声光报警\nTFT闪烁：水量不足\nAPP推送：请充值', 3);
+  drawVLine(svg, rx + 160, 719, 740, arrow);
+
+  // 正常
+  drawProcess(svg, rx, 770, W, H, '正常供水\n电磁锁保持开启', 2);
+  drawProcess(svg, rx, 850, W, H, 'NB-IoT上传水量数据\n至云平台', 2);
+  drawStart(svg, rx, 930, 140, 40, '返回');
+
+  // 连线
+  drawVLine(svg, cx, 48, 83, arrow);
+  drawVLine(svg, cx, 125, 159, arrow);
+  drawVLine(svg, cx, 201, 220, arrow);
+  drawVLine(svg, cx, 304, 327, arrow);
+  drawVLine(svg, cx, 369, 405, arrow);
+  drawVLine(svg, cx, 447, 472, arrow);
+
+  // 累计变化 < 1升 → 跳过写Flash
+  drawLabel(svg, cx - 18, 310, '否');
+  drawVLine(svg, cx, 304, 327, arrow);
+  drawHLine(svg, cx - DW/2 - 14, cx - W/2, 304, arrow);
+  // 重新连接到TFT显示
+  drawHLine(svg, cx - W/2, cx, 447, null);
+  drawVLine(svg, cx, 327, 447, arrow);
+  // Actually for the "no" path from "≥1升", it should skip flash write and go to TFT
+
+  // 修正：≥1升 = 否 → 直接到TFT更新（跳过写Flash）
+  // 从decision right side出去，绕到TFT更新
+
+  // 简化修正 - "否"直接向下到TFT步骤
+  drawVLine(svg, cx, 304, 327, arrow); // 这个是>=1升->是->向下
+
+  // 剩余水量 ≤ 0
+  drawVLine(svg, cx, 556, 568, arrow);
+  drawLabel(svg, cx - 18, 562, '否');
+  drawLabel(svg, cx + 55, 562, '是');
+
+  // 是→停水
+  drawHLine(svg, cx - DW/2 - 10, lx - W/2, 610, arrow);
+  drawVLine(svg, lx, 589, 631, arrow);
+  drawVLine(svg, lx, 719, 772, arrow);
+
+  // 否→检查阈值
+  drawVLine(svg, cx, 556, 610, arrow);
+  drawHLine(svg, cx + DW/2 + 10, rx + 40, 610, arrow); // to diamond at rx
+
+  // 阈值判断分支
+  drawLabel(svg, rx - 20, 646, '是');
+  drawLabel(svg, rx + 20, 646, '否');
+  // 是→报警（到rx+160）
+  drawHLine(svg, rx + 70 + 10, rx + 160 - W/2, 698, arrow);
+  drawVLine(svg, rx + 160, 719, 740, arrow);
+  drawHLine(svg, rx + 160, rx, 740, arrow);
+  // 否→正常供水（直接向下）
+  drawVLine(svg, rx, 647, 770, arrow);
+  drawVLine(svg, rx, 791, 829, arrow);
+
+  // 从阈值判断"是"后也连接到正常流程
+  drawVLine(svg, rx + 160, 740, 770, arrow);
+  drawHLine(svg, rx + 160, rx, 770, arrow);
+})();
+
+// ============ 图5：NB-IoT通信流程图 ============
+(function() {
+  const svg = document.getElementById('s5');
+  const arrow = addArrowMarker(svg);
+  const cx = 400, lx = 200, rx = 600;
+  const W = 185, H = 42, DW = 150, DH = 84;
+
+  drawStart(svg, cx, 26, 150, 40, '通信任务启动');
+  drawProcess(svg, cx, 100, W, H, 'SIM7020C 初始化\nAT指令：查SIM·信号·注网', 2);
+  drawDiamond(svg, cx, 184, DW, DH, '注网\n成功？');
+  drawDiamond(svg, lx, 184, 120, 66, '重试<3？');
+  drawProcess(svg, lx, 270, 140, 40, '延时2s');
+  drawProcess(svg, lx + 160, 270, W, H, 'TFT：网络异常\n离线模式运行', 2);
+  drawStart(svg, lx + 160, 350, 130, 40, '返回（离线）');
+
+  drawProcess(svg, cx, 300, W, H, '连接 OF-Link 云平台\nAT+CIPSTART·建立TCP', 2);
+  drawDiamond(svg, cx, 384, DW, DH, '连接\n成功？');
+  drawDiamond(svg, lx, 384, 120, 66, '重试<3？');
+
+  drawProcess(svg, cx, 480, W, H, '打包数据帧\n(设备ID+已用水量+剩余水量\n+阀门状态+报警状态)', 4);
+  drawProcess(svg, cx, 580, W, H, 'AT+CIPSEND\n发送数据至云平台', 2);
+  drawDiamond(svg, cx, 670, DW, DH, '等待ACK\n/指令？');
+
+  drawProcess(svg, lx, 470, W, H, '断开TCP连接\n返回重新注网', 2);
+  drawStart(svg, lx, 556, 130, 40, '返回');
+
+  // 收到指令分支
+  drawDiamond(svg, rx, 760, 150, 84, '解析\n指令类型？');
+
+  drawProcess(svg, rx - 120, 860, 130, 40, '充值指令\n更新剩余水量', 2);
+  drawProcess(svg, rx + 40, 860, 130, 40, '远程开关阀\n执行阀门动作', 2);
+  drawProcess(svg, rx - 120, 940, 130, 40, '查询指令\n返回运行数据', 2);
+  drawProcess(svg, rx + 40, 940, 130, 40, '远程清零\n清零水量数据', 2);
+
+  drawProcess(svg, cx, 1000, W, H, '回复确认帧至云平台');
+  drawProcess(svg, cx, 1080, W, H, '进入低功耗等待\n更新心跳时间戳', 2);
+  drawStart(svg, cx, 1130, 140, 40, '返回');
+
+  // ===== 连线 =====
+  drawVLine(svg, cx, 46, 79, arrow);
+  drawVLine(svg, cx, 121, 142, arrow);
+  drawLabel(svg, cx - 20, 220, '是');
+  drawLabel(svg, cx + 55, 220, '否');
+  drawHLine(svg, cx - DW/2 - 10, lx + 40, 184, arrow);
+
+  drawLabel(svg, lx - 20, 220, '是');
+  drawLabel(svg, lx + 55, 220, '否');
+  drawVLine(svg, lx, 217, 249, arrow);
+  drawHLine(svg, lx, cx, 270, arrow); // loop back
+  drawVLine(svg, cx, 270, 279, arrow);
+
+  drawHLine(svg, lx + 60 + 10, lx + 160 - W/2, 270, arrow);
+  drawVLine(svg, lx + 160, 291, 332, arrow);
+
+  drawVLine(svg, cx, 226, 279, arrow);
+  drawVLine(svg, cx, 321, 342, arrow);
+
+  drawLabel(svg, cx - 20, 420, '是');
+  drawLabel(svg, cx + 55, 420, '否');
+  drawHLine(svg, cx - DW/2 - 10, lx + 40, 384, arrow);
+  drawLabel(svg, lx - 20, 420, '是');
+  drawLabel(svg, lx + 55, 420, '否');
+  drawVLine(svg, lx, 417, 449, arrow);
+  drawHLine(svg, lx, cx, 470, arrow); // loop back
+  drawVLine(svg, cx, 470, 459, arrow);
+
+  drawVLine(svg, cx, 426, 459, arrow);
+  drawVLine(svg, cx, 501, 559, arrow);
+  drawVLine(svg, cx, 601, 628, arrow);
+
+  // ACK/指令分支
+  drawLabel(svg, cx - 20, 706, 'ACK');
+  drawLabel(svg, cx + 40, 706, '收到指令');
+  drawLabel(svg, lx - 30, 706, '超时');
+  drawVLine(svg, cx, 712, 1000, arrow);
+  drawHLine(svg, cx + DW/2 + 10, rx - 40, 760, arrow);
+  drawHLine(svg, cx - DW/2 - 10, lx + W/2, 712, arrow);
+  drawHLine(svg, lx, cx, 712, arrow);
+
+  drawVLine(svg, rx, 802, 839, arrow);
+  drawHLine(svg, rx - 100, rx - 120 + 65, 860, arrow);
+  drawHLine(svg, rx + 80, rx + 40 + 65, 860, arrow);
+  drawHLine(svg, rx - 120 + 65, rx + 40 + 65, 860, arrow);
+  drawHLine(svg, rx - 100, rx - 120 + 65, 940, arrow);
+  drawHLine(svg, rx + 80, rx + 40 + 65, 940, arrow);
+
+  // 所有指令分支汇聚到回复确认帧
+  // simplified - connect all to the bottom
+  drawVLine(svg, cx, 1000, 1021, arrow);
+  drawVLine(svg, cx, 1059, 1101, arrow);
+
+  drawVLine(svg, cx, 1070, 1080, arrow);
+  drawVLine(svg, cx, 1101, 1130, arrow);
+})();
+
+// ============ 图6：缴费充值流程图 ============
+(function() {
+  const svg = document.getElementById('s6');
+  const arrow = addArrowMarker(svg);
+  const cx = 400, lx = 210, rx = 590;
+  const W = 185, H = 42, DW = 150, DH = 84;
+
+  drawStart(svg, cx, 26, 150, 40, '用户打开手机APP');
+  drawProcess(svg, cx, 100, W, H, '登录账号\n绑定水表设备ID', 2);
+  drawProcess(svg, cx, 176, W, H, '查看水表信息\n剩余水量/已用水量/阀门状态', 2);
+  drawDiamond(svg, cx, 260, DW, DH, '点击\n充值缴费？');
+  drawProcess(svg, rx, 260, W, H, '查看用水记录\n历史账单', 2);
+  drawStart(svg, rx, 344, 140, 40, '结束');
+
+  drawProcess(svg, cx, 400, W, H, '输入充值金额\n选择支付方式（微信/支付宝）', 2);
+  drawProcess(svg, cx, 480, W, H, '调用支付接口');
+  drawDiamond(svg, cx, 562, DW, DH, '支付\n成功？');
+  drawProcess(svg, lx, 562, W, H, 'APP提示：支付失败\n请重试', 2);
+  drawHLine(svg, lx + W/2, cx - W/2, 562, arrow);
+
+  drawProcess(svg, cx, 650, W, H, 'APP下发充值指令\n至 OF-Link 云平台', 2);
+  drawProcess(svg, cx, 732, W, H, '云平台转发指令\n至 NB-IoT 模块', 2);
+  drawDiamond(svg, cx, 820, DW, DH, '水表设备\n收到指令？');
+  drawDiamond(svg, lx, 820, 120, 66, '重试<3？');
+  drawProcess(svg, lx, 910, 140, 40, '重发指令');
+  drawProcess(svg, lx + 160, 910, W, H, 'APP：设备离线\n充值未到账\n请联系客服', 3);
+  drawStart(svg, lx + 160, 990, 140, 40, '结束');
+
+  drawProcess(svg, cx, 910, W, H, '更新剩余水量\n写入Flash', 2);
+  drawDiamond(svg, cx, 990, 140, 74, '阀门\n关闭？');
+  drawProcess(svg, lx, 990, 150, 42, '阀门保持开启');
+  drawProcess(svg, rx, 990, W, H, '继电器动作\n电磁锁开启阀门\n恢复供水', 3);
+
+  drawProcess(svg, cx, 1070, W, H, '清除声光报警\nTFT恢复正常显示', 2);
+  drawProcess(svg, cx, 1150, W, H, '回复充值确认\n至云平台→APP', 2);
+  drawProcess(svg, cx, 1226, W, H, 'APP显示：充值成功\n更新剩余水量显示', 2);
+  drawStart(svg, cx, 1296, 140, 40, '结束');
+
+  // 连线
+  drawVLine(svg, cx, 46, 79, arrow);
+  drawVLine(svg, cx, 121, 155, arrow);
+  drawVLine(svg, cx, 197, 218, arrow);
+  drawLabel(svg, cx - 18, 296, '是');
+  drawLabel(svg, cx + 55, 296, '否');
+  drawHLine(svg, cx + DW/2 + 10, rx - W/2, 260, arrow);
+  drawVLine(svg, rx, 281, 326, arrow);
+
+  drawVLine(svg, cx, 302, 379, arrow);
+  drawVLine(svg, cx, 421, 459, arrow);
+  drawVLine(svg, cx, 501, 520, arrow);
+
+  drawLabel(svg, cx - 18, 598, '是');
+  drawLabel(svg, cx + 55, 598, '否');
+  drawHLine(svg, cx - DW/2 - 10, lx - W/2, 562, arrow);
+  drawVLine(svg, lx, 583, 640, arrow);
+  drawHLine(svg, lx, cx, 640, arrow);
+  drawVLine(svg, cx, 640, 650, arrow);
+
+  drawVLine(svg, cx, 671, 711, arrow);
+  drawVLine(svg, cx, 753, 778, arrow);
+
+  drawLabel(svg, cx - 18, 856, '是');
+  drawLabel(svg, cx + 55, 856, '否');
+  drawHLine(svg, cx - DW/2 - 10, lx + 40, 820, arrow);
+  drawLabel(svg, lx - 18, 856, '是');
+  drawLabel(svg, lx + 50, 856, '否');
+  drawVLine(svg, lx, 853, 889, arrow);
+  drawHLine(svg, lx, cx, 910, arrow);
+  drawVLine(svg, cx, 910, 931, arrow);
+
+  drawHLine(svg, lx + 60 + 10, lx + 160 - W/2, 910, arrow);
+  drawVLine(svg, lx + 160, 931, 972, arrow);
+
+  drawVLine(svg, cx, 931, 948, arrow);
+  drawLabel(svg, cx - 18, 1026, '否');
+  drawLabel(svg, cx + 55, 1026, '是');
+
+  drawVLine(svg, lx, 1011, 1050, null);
+  drawHLine(svg, lx, rx, 1050, null);
+  drawVLine(svg, rx, 1011, 1050, arrow);
+
+  drawVLine(svg, cx, 1024, 1049, arrow);
+  drawVLine(svg, cx, 1091, 1129, arrow);
+  drawVLine(svg, cx, 1171, 1205, arrow);
+  drawVLine(svg, cx, 1247, 1278, arrow);
+})();
+
+// ============ 图7：硬件系统框图 ============
+(function() {
+  const svg = document.getElementById('s7');
+  const arrow = addArrowMarker(svg);
+  const cx = 400;
+
+  // STM32 核心板居中
+  drawProcess(svg, cx, 260, 220, 60, 'STM32F103C8T6 核心板\n72MHz Cortex-M3\n64KB Flash · 20KB SRAM', 3);
+
+  // 电源
+  drawProcess(svg, cx, 70, 160, 40, '5V DC 电源适配器\n（220V AC → 5V DC）', 2);
+  drawVLine(svg, cx, 90, 230, arrow);
+
+  // 左侧 - 输入模块
+  drawDashBox(svg, 20, 130, 220, 300, '输入模块');
+  const inputs = [
+    { t: 'RC522 RFID刷卡模块\n（SPI接口）', y: 170 },
+    { t: 'YF-S201C 水流计传感器\n（外部中断）', y: 240 },
+    { t: '限位开关\n（GPIO输入）', y: 310 },
+    { t: '独立按键 ×3\n（GPIO输入）', y: 370 },
+  ];
+  inputs.forEach(o => drawProcess(svg, 130, o.y, 170, 40, o.t, 2));
+  // 连线到MCU
+  inputs.forEach(o => drawHLine(svg, 215, 290, o.y, arrow));
+
+  // 右侧 - 输出模块
+  drawDashBox(svg, 560, 130, 220, 320, '输出模块');
+  const outputs = [
+    { t: 'ST7735 TFT显示屏\n（SPI, 128×160彩色）', y: 170 },
+    { t: 'SG90 舵机\n（PWM输出, 表箱门锁）', y: 240 },
+    { t: '5V继电器\n（GPIO输出, 电磁阀控制）', y: 310 },
+    { t: 'LED灯 + 蜂鸣器\n（GPIO输出, 声光报警）', y: 380 },
+  ];
+  outputs.forEach(o => drawProcess(svg, 670, o.y, 180, 40, o.t, 2));
+  outputs.forEach(o => drawHLine(svg, 510, 560, o.y, arrow));
+
+  // 下方 - 通信模块
+  drawDashBox(svg, 160, 470, 480, 100, '通信模块');
+  drawProcess(svg, 280, 510, 170, 40, 'SIM7020C NB-IoT 模组\n（UART串口）', 2);
+  drawProcess(svg, 520, 510, 160, 40, 'China Mobile\nNB-IoT SIM卡', 2);
+
+  // MCU到通信模块
+  drawVLine(svg, cx, 320, 490, arrow);
+  drawHLine(svg, cx, 280, 490, arrow);
+  drawHLine(svg, 365, 520, 510, arrow);
+})();
+
+})();
+</script>
+</body>
+</html>
